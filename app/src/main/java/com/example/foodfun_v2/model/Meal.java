@@ -2,6 +2,11 @@ package com.example.foodfun_v2.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+enum typeOfMeal {
+    BREAKFAST,
+    LUNCH,
+    DINNER
+}
 
 public class Meal {
 
@@ -9,7 +14,7 @@ public class Meal {
     private String name;
     private ArrayList<People> listOfPeople;
     private int howManyEat;
-    private HashMap<String,Ingredients> ingredients;
+    private HashMap<String, Ingredient> ingredients;
     private typeOfMeal type;
 
 
@@ -18,7 +23,7 @@ public class Meal {
         this.name=name;
         this.type=typeOfMeal;
         this.listOfPeople=new ArrayList<People>();
-        this.ingredients = new HashMap<String,Ingredients>();
+        this.ingredients = new HashMap<String, Ingredient>();
     }
 
 
@@ -44,11 +49,11 @@ public class Meal {
         return listOfPeople.size();
     }
 
-    public HashMap<String, Ingredients> getIngredients() {
+    public HashMap<String, Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void addIngredients(Ingredients ingredient) {
+    public void addIngredients(Ingredient ingredient) {
          this.ingredients.put(ingredient.getName(),ingredient);
     }
 

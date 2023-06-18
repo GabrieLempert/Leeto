@@ -1,6 +1,8 @@
 package com.example.foodfun_v2.model;
 import androidx.annotation.NonNull;
 
+import com.example.foodfun_v2.model.login_model.IdGenerator;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Trip {
+    private IdGenerator tripId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String nameOfTrip;
@@ -17,6 +20,7 @@ public class Trip {
     private HashMap<LocalDate,HashMap<typeOfMeal,ArrayList<Meal>>> mealList;
 
     public Trip(String startDate,String endDate,String name){
+        this.tripId = new IdGenerator('1',6);
         this.listOfPeople=new ArrayList<People>();
         this.supplies=new HashMap<String,Supplies>();
         this.mealList=new HashMap<LocalDate,HashMap<typeOfMeal,ArrayList<Meal>>>();
@@ -26,8 +30,6 @@ public class Trip {
         Supplies water = new Supplies("Water");
         this.nameOfTrip = name + " " + this.startDate;
         this.supplies.put(water.getName(),water);
-        addDatesAndTypes();
-
 
     }
 
@@ -36,9 +38,9 @@ public class Trip {
         return date.parse(dateFormat,dateFormatter);
     }
 
-  public  HashMap<LocalDate,HashMap<typeOfMeal,ArrayList<Meal>>> getMealList(){
+    public  HashMap<LocalDate,HashMap<typeOfMeal,ArrayList<Meal>>> getMealList(){
         return this.mealList;
-  }
+    }
 
     public boolean addPeople(People newPeople){
         if(!listOfPeople.contains(newPeople)){
